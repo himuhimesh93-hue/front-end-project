@@ -1,0 +1,10 @@
+services:
+  - type: static
+    name: front-end-project
+    env: node
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "build"
+    envVars:
+      - key: REACT_APP_API_URL
+        value: "https://cabsystemsms-1.onrender.com"
+    autoDeploy: true
