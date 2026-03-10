@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Reg() {
   const [data, setdata] = useState({
@@ -7,6 +8,8 @@ function Reg() {
     email: "",
     password: ""
   })
+
+  const navigate = useNavigate()
 
   const changeName = (e) => {
     setdata({ ...data, [e.target.name]: e.target.value })
@@ -17,6 +20,8 @@ function Reg() {
       const apiUrl = process.env.REACT_APP_API_URL || "https://cabsystemsms-1.onrender.com"
       const res = await axios.post(`${apiUrl}/register`, data)
       alert(res.data)
+      // after successful registration, redirect to home
+      navigate("/")
     } catch (xyz) {
       alert(xyz.response?.data || "Error occurred")
     }
